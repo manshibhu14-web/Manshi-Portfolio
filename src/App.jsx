@@ -18,6 +18,7 @@ const projects = [
       "JSON Server",
     ],
     art: "merch",
+    image: "/shopsphere-dashboard.png",
     liveUrl: "https://shopsphere-red-delta.vercel.app/",
     githubUrl: "https://github.com/manshibhu14-web/ShopSphere",
   },
@@ -78,7 +79,7 @@ function ProjectArt({ type }) {
   return (
     <div className={"art-preview " + type}>
 
-      {/* MerchPilot */}
+      {/* ShopSphere */}
       {type === "merch" && (
         <div className="dashboard">
           <header>
@@ -195,7 +196,20 @@ export default function App() {
 
         <a className="scroll" href="#work">—　SCROLL TO EXPLORE</a></section>
       <div className="band"><b>GOOD DESIGN SHOULD FEEL SIMPLE.<br /><span>GOOD CODE SHOULD MAKE IT POSSIBLE.</span></b><small>BASED IN INDIA　 ·　 AVAILABLE FOR THE NEXT CHAPTER ↗</small></div>
-      <section className="wrap work section" id="work"><div className="heading"><div><div className="eyebrow">01 / SELECTED WORK</div><h2>Things I’ve <em>built.</em></h2></div><p>A selection of frontend projects where I’ve worked on interfaces, interactions, and practical product features.</p></div><div className="projects">{projects.map(p => <article className="project" key={p.n}><div className="project-image"><ProjectArt type={p.art} /><span>{p.n}</span></div><div className="project-copy"><small>{p.type}</small><h3>{p.title}</h3><p>{p.desc}</p><div className="tags">{p.tags.map(t => <i key={t}>{t}</i>)}</div>
+      <section className="wrap work section" id="work"><div className="heading"><div><div className="eyebrow">01 / SELECTED WORK</div><h2>Things I’ve <em>built.</em></h2></div><p>A selection of frontend projects where I’ve worked on interfaces, interactions, and practical product features.</p></div><div className="projects">{projects.map(p => <article className="project" key={p.n}>
+        <div className="project-image">
+  {p.image ? (
+    <img
+      src={p.image}
+      alt={`${p.title} dashboard preview`}
+      className="project-screenshot"
+    />
+  ) : (
+    <ProjectArt type={p.art} />
+  )}
+  <span>{p.n}</span>
+</div>
+        <div className="project-copy"><small>{p.type}</small><h3>{p.title}</h3><p>{p.desc}</p><div className="tags">{p.tags.map(t => <i key={t}>{t}</i>)}</div>
         <div className="project-links">
           {p.liveUrl && (
             <a href={p.liveUrl} target="_blank" rel="noopener noreferrer">
